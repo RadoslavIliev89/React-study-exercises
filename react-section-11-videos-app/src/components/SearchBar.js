@@ -16,7 +16,7 @@ class SearchBar extends Component {
     render() {
 
         return (
-            <div className="search-bar ui segment">
+            <div className="ui segment">
                 <form className="ui form" onSubmit={this.onFormSubmit}>
                     <div className="field">
                         <label>Video Search</label>
