@@ -1,5 +1,5 @@
 import VideoCard from './VideoCard';
-const VideoList =({videos,onVideoSelect})=>{
+const VideoList =({videos, onVideoSelect})=>{
 
     const renderedList= videos.map((x)=><VideoCard onVideoSelect={onVideoSelect} video={x} key={x.id.videoId} />)
    

@@ -13,7 +13,7 @@ class App extends Component {
             (err) => this.setState({ errorMessage: err.message }));
     }
 
-    // helper, wrapper method
+
     renderContent() {
         if (this.state.errorMessage && !this.state.lat) {
             return <div>Error: {this.state.errorMessage}</div>
