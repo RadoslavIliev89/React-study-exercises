@@ -22,7 +22,7 @@ const App = () => {
     return (
         <div>
             <SearchBar/>
-            <Accordion items={items} />
+           
         </div>
     );
 }

@@ -5,19 +5,19 @@ const Accordion = ({ items }) => {
     const [activeIndex, setActiveIndex] = useState('');
 
     const onTitleClick = (index) => {
-        
+
         setActiveIndex(index)
     }
 
-    const renderedItems = items.map((x, index) =>{
-        const active= index===activeIndex?'active':''
-       return (<Fragment key={x.title} >
+    const renderedItems = items.map((x, index) => {
+        const active = index === activeIndex ? 'active' : ''
+        return (<Fragment key={x.pageid} >
             <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
                 <i className="dropdown icon"></i>
                 {x.title}
             </div>
             <div className={`content ${active}`}>
-                <p>{x.content}</p>
+                <span dangerouslySetInnerHTML={{__html:x.snippet}}></span>
             </div>
         </Fragment>);
     })
@@ -25,7 +25,7 @@ const Accordion = ({ items }) => {
     return (
         <div className="ui styled accordion" style={{ marginTop: '10px', marginLeft: '10px' }}>
             {renderedItems}
-            </div>
+        </div>
     );
 }
 export default Accordion;
