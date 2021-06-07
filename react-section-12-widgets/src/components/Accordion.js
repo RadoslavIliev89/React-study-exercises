@@ -13,6 +13,9 @@ const Accordion = ({ items }) => {
         const active = index === activeIndex ? 'active' : ''
         return (<Fragment key={x.pageid} >
             <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
+                <div className="right floated content">
+                    <a href={`http://en.wikipedia.org?curid=${x.pageid}`} className="ui button">Go</a>
+                </div>
                 <i className="dropdown icon"></i>
                 {x.title}
             </div>
