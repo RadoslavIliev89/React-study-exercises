@@ -3,8 +3,19 @@ import { useState, useEffect } from 'react';
 import Accordion from './Accordion';
 const SearchBar = () => {
     const [term, setTerm] = useState('programming');
+    const [debouncedTerm, setDebouncedTerm] = useState(term);
     const [result, setResult] = useState([]);
-   
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedTerm(term)
+        }, 1000)
+
+        return () => {
+            clearTimeout(timeoutId);
+        }
+    }, [term])
+
     useEffect(() => {
         const search = async () => {
             const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -13,26 +24,31 @@ const SearchBar = () => {
                     list: 'search',
                     format: 'json',
                     origin: '*',
-                    srsearch: term
+                    srsearch: debouncedTerm
                 }
             })
 
             setResult(data.query.search)
         }
-        if (term && !result.length) {
-            search();
-        } else {
-            const timeoutId = setTimeout(() => {
-                if (term) {
-                    search();
-                }
-            }, 1000)
-            return () => {
-                clearTimeout(timeoutId)
-            }
-        }
+        search();
+    }, [debouncedTerm])
 
-    }, [term])
+    // useEffect(() => {
+
+    //     if (term && !result.length) {
+    //         search();
+    //     } else {
+    //         const timeoutId = setTimeout(() => {
+    //             if (term) {
+    //                 search();
+    //             }
+    //         }, 1000)
+    //         return () => {
+    //             clearTimeout(timeoutId)
+    //         }
+    //     }
+
+    // }, [term])
 
     return (
         <div>
