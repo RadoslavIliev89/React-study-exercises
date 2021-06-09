@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import Dropdown from './Dropdown';
+import Convert from './Convert';
+
+// AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
+
 
 const options = [
+    {
+        label: 'Bulgarian',
+        value: 'bg'
+    },
     {
         label: 'Africaans',
         value: 'af'
@@ -13,13 +21,26 @@ const options = [
     {
         label: 'Hindi',
         value: 'hi'
-    }
+    },
+
 ]
 
 const Translate = () => {
 
     const [language, setLanguage] = useState(options[0])
-    const [text, setText] = useState('')
+
+    const [text, setText] = useState('');
+    const [debouncedText, setDebouncedText] = useState(text)
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedText(text)
+        }, 1000)
+        return () => {
+            clearTimeout(timeoutId)
+        }
+    }, [text])
+
     return (
         <div>
             <div className="ui form">
@@ -34,6 +55,9 @@ const Translate = () => {
                 selected={language}
                 onSelectedChange={setLanguage}
             />
+            <hr />
+            <h3 className="ui header">Output</h3>
+            <Convert text={debouncedText} language={language} />
         </div>
     );
 }
