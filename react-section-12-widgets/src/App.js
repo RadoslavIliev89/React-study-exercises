@@ -2,21 +2,22 @@ import Accordion from './components/Accordion';
 import SearchBar from './components/SearchBar';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
+import Header from './components/Header'
 
 import { useState } from 'react';
 
 const items = [
     {
         title: 'What is React',
-        content: 'React is a front end JavaScript framework '
+        snippet: 'React is a front end JavaScript framework '
     },
     {
         title: 'Why use React',
-        content: 'React is a  favorite JS library among engineers'
+        snippet: 'React is a  favorite JS library among engineers'
     },
     {
         title: 'How do you use React',
-        content: 'You use React to creating components'
+        snippet: 'You use React to creating components'
     }
 ]
 
@@ -45,12 +46,12 @@ const App = () => {
                 options={options} />
         }
         else if (window.location.pathname === '/translate') {
-            return <Translate  />
+            return <Translate />
         }
     }
     return (
         <div>
-
+            <Header />
             {showPublicPath()}
             {/* <button onClick={() => setDropdown(!showDropdown)}>Toggle dropdown</button>
             { showDropdown ?
