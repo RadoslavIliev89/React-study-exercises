@@ -8,7 +8,7 @@ const Accordion = ({ items }) => {
 
         setActiveIndex(index)
     }
-
+console.log(items);
     const renderedItems = items.map((x, index) => {
         const active = index === activeIndex ? 'active' : ''
         return (<Fragment key={x.pageid} >

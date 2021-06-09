@@ -5,20 +5,20 @@ import Translate from './components/Translate';
 
 import { useState } from 'react';
 
-// const items = [
-//     {
-//         title: 'What is React',
-//         content: 'React is a front end JavaScript framework '
-//     },
-//     {
-//         title: 'Why use React',
-//         content: 'React is a  favorite JS library among engineers'
-//     },
-//     {
-//         title: 'How do you use React',
-//         content: 'You use React to creating components'
-//     }
-// ]
+const items = [
+    {
+        title: 'What is React',
+        content: 'React is a front end JavaScript framework '
+    },
+    {
+        title: 'Why use React',
+        content: 'React is a  favorite JS library among engineers'
+    },
+    {
+        title: 'How do you use React',
+        content: 'You use React to creating components'
+    }
+]
 
 const options = [
     { label: 'The Color Red', value: 'red' },
@@ -29,13 +29,29 @@ const options = [
 
 const App = () => {
 
-    // const [selected, setSelected] = useState(options[0]);
-    // const [showDropdown, setDropdown] = useState(true);
+    const [selected, setSelected] = useState(options[0]);
+    const [showDropdown, setDropdown] = useState(true);
 
+    const showPublicPath = () => {
+        if (window.location.pathname === '/') {
+            return <Accordion items={items} />
+        }
+        else if (window.location.pathname === '/list') {
+            return <SearchBar />
+        }
+        else if (window.location.pathname === '/dropdown') {
+            return <Dropdown selected={selected}
+                onSelectedChange={setSelected}
+                options={options} />
+        }
+        else if (window.location.pathname === '/translate') {
+            return <Translate  />
+        }
+    }
     return (
         <div>
-            <Translate />
 
+            {showPublicPath()}
             {/* <button onClick={() => setDropdown(!showDropdown)}>Toggle dropdown</button>
             { showDropdown ?
                 <Dropdown
