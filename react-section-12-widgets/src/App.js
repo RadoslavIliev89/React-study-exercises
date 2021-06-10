@@ -4,7 +4,7 @@ import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
 import Header from './components/Header'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const items = [
     {
@@ -31,9 +31,17 @@ const options = [
 const App = () => {
 
     const [selected, setSelected] = useState(options[0]);
-    const [showDropdown, setDropdown] = useState(true);
+    const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
-    const showPublicPath = () => {
+    const onLocationChange = () => {
+        setCurrentPath(window.location.pathname)
+        showPublicPath(currentPath)
+    }
+    useEffect(() => {
+        window.addEventListener('popstate', onLocationChange)
+    }, [])
+    const showPublicPath = (path) => {
+
         if (window.location.pathname === '/') {
             return <Accordion items={items} />
         }
