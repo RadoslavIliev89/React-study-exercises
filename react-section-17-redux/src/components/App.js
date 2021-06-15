@@ -1,4 +1,6 @@
-import SongList from './SongList'
+import SongList from './SongList';
+import SongDetail from './SongDetail';
+
 
 const App = () => {
     return (
@@ -7,6 +9,10 @@ const App = () => {
                 <div className="column eight wide">
                     <SongList />
                 </div>
+                <div className="column eight wide">
+                    <SongDetail />
+                </div>
+
             </div>
         </div >
     );
